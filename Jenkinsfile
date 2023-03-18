@@ -26,15 +26,6 @@ pipeline {
                         sh "kubectl apply -f mongo.yml"
                         sh "kubectl apply -f mongo-configmap.yml"
                         sh "kubectl apply -f mongo-express.yml"
-                    }
-                }
-            }
-        }
-        stage("Deploy to EKS") {
-            steps {
-                script {
-                    dir('k8s-sock-shop-app') {
-                        sh "aws eks update-kubeconfig --name mongoapp-eks-cluster"
                         sh "kubectl apply -f complete-demo.yml"
                         sh "kubectl apply -f manifests-monitoring"
                     }
