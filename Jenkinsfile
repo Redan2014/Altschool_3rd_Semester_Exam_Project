@@ -22,6 +22,10 @@ pipeline {
                 script {
                     dir('k8s-simple-web-app') {
                         sh "aws eks update-kubeconfig --name mongoapp-eks-cluster"
+                        sh "kubectl apply -f mongo-secret.yml"
+                        sh "kubectl apply -f mongo.yml"
+                        sh "kubectl apply -f mongo-configmap.yml"
+                        sh "kubectl apply -f mongo-express.yml"
                         sh "kubectl apply -f complete-demo.yml"
                         sh "kubectl apply -f manifests-monitoring"
                     }
