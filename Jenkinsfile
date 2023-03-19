@@ -20,7 +20,7 @@ pipeline {
         stage("Deploy to EKS") {
             steps {
                 script {
-                    dir('k8s-simple-web-app') {
+                    dir('kubernetes') {
                         sh "aws eks update-kubeconfig --name mongoapp-eks-cluster"
                         sh "kubectl apply -f mongo-secret.yml"
                         sh "kubectl apply -f mongo.yml"
